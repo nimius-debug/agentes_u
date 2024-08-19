@@ -1,5 +1,6 @@
 import requests
-import streamlit as st
+import os
+
 url = "https://local-business-data.p.rapidapi.com/search"
 
 payload = {
@@ -11,7 +12,7 @@ payload = {
 	"dedup": True
 }
 headers = {
-	"x-rapidapi-key": st.secrets["rapidapi_key"],
+	"x-rapidapi-key": os.environ["rapidapi_key"],
 	"x-rapidapi-host": "local-business-data.p.rapidapi.com",
 	"Content-Type": "application/json"
 }
