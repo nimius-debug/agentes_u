@@ -2,3 +2,4 @@ venv
 old
 .env
 secrets.toml
+__pycache__
