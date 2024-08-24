@@ -3,3 +3,4 @@ old
 .env
 secrets.toml
 __pycache__
+agentes

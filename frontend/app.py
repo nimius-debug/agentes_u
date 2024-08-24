@@ -1,46 +1,81 @@
-import hmac
-import os
+from login import check_password
 import streamlit as st
+from utils.constants import REGIONS, LANGUAGES
+from apis.fetchGMapData import fetch_business_data
+from apis.dataToTable import data_frame_table
+from apis.emailScrawler import process_businesses_email
 
-
-def check_password():
-    """Returns `True` if the user had a correct password."""
-
-    def login_form():
-        """Form with widgets to collect user information"""
-        with st.form("Credentials"):
-            st.text_input("Username", key="username")
-            st.text_input("Password", type="password", key="password")
-            st.form_submit_button("Log in", on_click=password_entered)
-
-    def password_entered():
-        """Checks whether a password entered by the user is correct."""
-        # Access the password from the environment variable
-        if st.session_state["username"] == "admin" and hmac.compare_digest(
-            st.session_state["password"],
-            os.environ.get("PASSWORD_ADMIN")
-        ):
-            st.session_state["password_correct"] = True
-            del st.session_state["password"]  # Don't store the username or password.
-            del st.session_state["username"]
+@st.dialog("Form Submitted", width="small")
+def dialog(payload):
+    # Display the input data
+    with st.spinner("Searching..."):
+        response = fetch_business_data(payload)
+        length = len(response)
+        if length == 0:
+            st.info("No businesses found. Please try again with different search queries.")
         else:
-            st.session_state["password_correct"] = False
+            st.success(f"Found {length} businesses")
+            # Update session state
+            st.session_state['business_data'] = response
 
-    # Return True if the username + password is validated.
-    if st.session_state.get("password_correct", False):
-        return True
+    st.header("Do you want to extract emails from the businesses?")
+    st.info("Email extraction can take a couple of minutes as it is crawling the web for data. If enabled, please be patient.")
+    emailon = st.button("Extract Email", key="extract_email")
+    if emailon:
+        # Add emails to the businesses
+        with st.spinner("Extracting emails..."):
+            st.session_state['business_data'] = process_businesses_email(st.session_state['business_data'])
+            st.write(st.session_state['business_data'])
+            st.success("Email extraction completed.")
+            # Trigger a rerun to update the table
+            st.rerun()
 
-    # Show inputs for username + password.
-    login_form()
-    if "password_correct" in st.session_state:
-        st.error("😕 User not known or password incorrect")
+def main():
+    # Main Streamlit app starts here
+    colm = st.columns([4, 1], gap="large")
+    with colm[0]:
+        st.header("_:violet[Leads] Extractor_", divider="gray", anchor=False)
+    with colm[1]:
+        st.image("https://ik.imagekit.io/indesign/gmap/unnamed.png?updatedAt=1724268033278", width=100)
+      
+    with st.form(key='search_form'):
+        # Queries input
+        st.markdown("##### Search Parameters")
+        queries = st.text_area("Queries (separate each query with a comma)", help="Enter the search queries, separated by commas.")
+        queries_list = [q.strip() for q in queries.split(',')] if queries else []
         
-    return False
+        # Region select box
+        region = st.selectbox("Region", options=list(REGIONS.keys()), help="Select the region.")
+        selected_region_code = REGIONS[region] if region else None
 
+        # Submit button
+        submit_button = st.form_submit_button(label='Search')
+    
+    # Handling form submission
+    if submit_button:
+        if queries_list:
+            payload = {
+                "queries": queries_list,
+                "limit": 20,
+                "zoom": 13,
+                "dedup": True
+            }
+            # Conditionally include region if selected
+            if selected_region_code:
+                payload["region"] = selected_region_code
 
-if not check_password():
-    st.stop()
-
-# Main Streamlit app starts here
-st.write("Here goes your normal Streamlit app...")
-st.button("Click me")
+            dialog(payload)  # Call the dialog function to handle form submission      
+        else:
+            st.error("The 'Queries' field cannot be empty. Please enter at least one query.")
+            
+    # Display the table if business data is available in session state
+    if 'business_data' in st.session_state and st.session_state['business_data']:
+        # Render the table outside the dialog function
+        business_table = data_frame_table(st.session_state['business_data'])
+        st.dataframe(business_table)
+       
+if __name__ == "__main__":
+    # Check password before running the app
+    if not check_password():
+        st.stop()
+    main()
