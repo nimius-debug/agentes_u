@@ -56,7 +56,7 @@ def main():
         if queries_list:
             payload = {
                 "queries": queries_list,
-                "limit": 20,
+                "limit": 1000,
                 "zoom": 13,
                 "dedup": True
             }
