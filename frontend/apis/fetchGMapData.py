@@ -25,7 +25,7 @@ def fetch_business_data(payload: Dict) -> Dict[str, Any]:
 
     url = "https://local-business-data.p.rapidapi.com/search"
     headers = {
-        "x-rapidapi-key": os.environ.get("rapidapi_key"),
+        "x-rapidapi-key": os.environ.get("RAPID_API_KEY"),
         "x-rapidapi-host": "local-business-data.p.rapidapi.com",
         "Content-Type": "application/json"
     }
