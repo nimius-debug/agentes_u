@@ -158,7 +158,7 @@ def get_all_website_links(url):
     return urls
 
 
-print(scrape_emails_from_html("https://www.grandeszapatos.com/contactanos", 10))
+# print(scrape_emails_from_html("https://www.grandeszapatos.com/contactanos", 10))
 # def get_internal_links(url, base_url):
 #     try:
 #         response = requests.get(url, timeout=10)
