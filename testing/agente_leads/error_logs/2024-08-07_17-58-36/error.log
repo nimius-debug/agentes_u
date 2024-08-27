@@ -1,0 +1,63 @@
+Traceback (most recent call last):
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\venv\lib\site-packages\botasaurus\request_decorator.py", line 108, in run_task
+    result = func(reqs, data, metadata)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 55, in scrape_place_info
+    address = extract_address(drive, link)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 17, in extract_address
+    driver.google_get(link)
+AttributeError: 'Request' object has no attribute 'google_get'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\venv\lib\site-packages\botasaurus\request_decorator.py", line 108, in run_task
+    result = func(reqs, data, metadata)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 55, in scrape_place_info
+    address = extract_address(drive, link)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 17, in extract_address
+    driver.google_get(link)
+AttributeError: 'Request' object has no attribute 'google_get'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\venv\lib\site-packages\botasaurus\request_decorator.py", line 108, in run_task
+    result = func(reqs, data, metadata)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 55, in scrape_place_info
+    address = extract_address(drive, link)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 17, in extract_address
+    driver.google_get(link)
+AttributeError: 'Request' object has no attribute 'google_get'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\venv\lib\site-packages\botasaurus\request_decorator.py", line 108, in run_task
+    result = func(reqs, data, metadata)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 55, in scrape_place_info
+    address = extract_address(drive, link)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 17, in extract_address
+    driver.google_get(link)
+AttributeError: 'Request' object has no attribute 'google_get'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\venv\lib\site-packages\botasaurus\request_decorator.py", line 108, in run_task
+    result = func(reqs, data, metadata)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 55, in scrape_place_info
+    address = extract_address(drive, link)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 17, in extract_address
+    driver.google_get(link)
+AttributeError: 'Request' object has no attribute 'google_get'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\venv\lib\site-packages\botasaurus\request_decorator.py", line 108, in run_task
+    result = func(reqs, data, metadata)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 55, in scrape_place_info
+    address = extract_address(drive, link)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 17, in extract_address
+    driver.google_get(link)
+AttributeError: 'Request' object has no attribute 'google_get'

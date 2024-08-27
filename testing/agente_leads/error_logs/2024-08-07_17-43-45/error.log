@@ -1,0 +1,75 @@
+Traceback (most recent call last):
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\venv\lib\site-packages\botasaurus\request_decorator.py", line 108, in run_task
+    result = func(reqs, data, metadata)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 36, in scrape_place_info
+    title = extract_title(html)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 8, in extract_title
+    title = json.loads(
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\json\__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not list
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\venv\lib\site-packages\botasaurus\request_decorator.py", line 108, in run_task
+    result = func(reqs, data, metadata)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 36, in scrape_place_info
+    title = extract_title(html)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 8, in extract_title
+    title = json.loads(
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\json\__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not list
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\venv\lib\site-packages\botasaurus\request_decorator.py", line 108, in run_task
+    result = func(reqs, data, metadata)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 36, in scrape_place_info
+    title = extract_title(html)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 8, in extract_title
+    title = json.loads(
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\json\__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not list
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\venv\lib\site-packages\botasaurus\request_decorator.py", line 108, in run_task
+    result = func(reqs, data, metadata)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 36, in scrape_place_info
+    title = extract_title(html)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 8, in extract_title
+    title = json.loads(
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\json\__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not list
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\venv\lib\site-packages\botasaurus\request_decorator.py", line 108, in run_task
+    result = func(reqs, data, metadata)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 36, in scrape_place_info
+    title = extract_title(html)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 8, in extract_title
+    title = json.loads(
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\json\__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not list
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\venv\lib\site-packages\botasaurus\request_decorator.py", line 108, in run_task
+    result = func(reqs, data, metadata)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 36, in scrape_place_info
+    title = extract_title(html)
+  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 8, in extract_title
+    title = json.loads(
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\json\__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not list
