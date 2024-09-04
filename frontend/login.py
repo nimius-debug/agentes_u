@@ -2,9 +2,10 @@ import hmac
 import os
 import streamlit as st
 from dotenv import load_dotenv
+from db.db_utils import get_user_from_db, register_user
+from werkzeug.security import check_password_hash
 # Load environment variables from .env file
 load_dotenv()
-
 
 def check_password():
     """Returns `True` if the user had a correct password."""
@@ -18,15 +19,19 @@ def check_password():
 
     def password_entered():
         """Checks whether a password entered by the user is correct."""
-        # Access the password from the environment variable
-        if st.session_state["username"] == "admin" and hmac.compare_digest(
-            st.session_state["password"],
-            os.environ.get("PASSWORD_ADMIN")
-        ):
+        username = st.session_state["username"]
+        password = st.session_state["password"]
+
+        # Fetch user data from MongoDB
+        user = get_user_from_db(username)
+        
+        if user and check_password_hash(user['password_hash'], password):
             st.session_state["password_correct"] = True
+            # st.session_state["current_user"] = username
+            st.session_state["user_id"] = str(user['_id'])  # Store the user's ID in session state
             del st.session_state["password"]  # Don't store the username or password.
             del st.session_state["username"]
-            st.toast("##### Welcome to Leads Extractor",icon="🔍")
+            st.toast("##### Welcome to Leads Extractor", icon="🔍")
         else:
             st.session_state["password_correct"] = False
 
@@ -40,3 +45,6 @@ def check_password():
         st.error("😕 User not known or password incorrect")
         
     return False
+
+# xz = register_user("user", "user")
+# print(xz)
