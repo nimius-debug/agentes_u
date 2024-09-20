@@ -92,15 +92,6 @@ def g_map_extractor():
         if st.button('Save Data to MongoDB'):
             show_save_dialog(queries_list, st.session_state['business_data'])
             
-    # Display the table if business data is available in session state
-    if 'business_data' in st.session_state and st.session_state['business_data']:
-        # Render the table outside the dialog function
-        business_table = data_frame_table(st.session_state['business_data'])
-        st.dataframe(business_table)
-        
-        # Add a button to save data to MongoDB under a specific category
-        if st.button('Save Data to MongoDB'):
-            show_save_dialog(queries_list, st.session_state['business_data'])
             
             
 @st.dialog("Save Data to MongoDB", width="small")
