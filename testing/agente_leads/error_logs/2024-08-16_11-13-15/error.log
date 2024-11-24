@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\venv\lib\site-packages\botasaurus\browser_decorator.py", line 176, in run_task
-    result = func(driver, data)
-  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\app.py", line 70, in scrape_places_links
-    scroll_to_end_of_places_list()
-  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\app.py", line 64, in scroll_to_end_of_places_list
-    while not driver.exists("p.fontBodyMedium > span > span"):
-AttributeError: 'Driver' object has no attribute 'exists'

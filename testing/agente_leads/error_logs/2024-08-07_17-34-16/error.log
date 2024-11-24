@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\venv\lib\site-packages\botasaurus\browser_decorator.py", line 176, in run_task
-    result = func(driver, data)
-  File "C:\Users\marco\Alquimista\0-InTheOven\agentes_u\agente_leads\main.py", line 54, in scrape_google_maps
-    scrape_place_obj: AsyncQueueResult = scrape_place_info()  # initialize the async queue for scraping places
-TypeError: scrape_place_info() missing 3 required positional arguments: 'request', 'link', and 'metadata'

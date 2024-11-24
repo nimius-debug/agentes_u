@@ -1,0 +1,5 @@
+[theme]
+primaryColor = "#1976D2"  # Strong blue for a corporate feel
+backgroundColor = "#F9FAFB"  # Subtle off-white for a soft background
+secondaryBackgroundColor = "#E3E9EF"  # Light blue-grey for layers
+textColor = "#2C2C2C"  # Neutral dark grey for easy readability
