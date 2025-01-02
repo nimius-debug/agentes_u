@@ -42,5 +42,6 @@ if st.session_state.logged_in:
 else:
     pg = st.navigation([login_page])
 
-st.write(st.session_state)  # for debugging
+#debugging
+#st.write(st.session_state)  # for debugging
 pg.run()
