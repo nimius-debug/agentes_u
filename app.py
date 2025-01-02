@@ -28,7 +28,7 @@ dashboard = st.Page(
 )
 
 search = st.Page("Tools/gmapExtractor.py", title="G Map", icon=":material/search:")
-search = st.Page("Tools/sendEmails.py", title="Send Email", icon=":material/email:")
+email = st.Page("Tools/sendEmails.py", title="Send Email", icon=":material/email:")
 
 # Show navigation
 if st.session_state.logged_in:
@@ -36,7 +36,7 @@ if st.session_state.logged_in:
         {
             "Account": [logout_page],
             "Dashboard": [dashboard],
-            "Tools": [search],
+            "Tools": [search, email],
         }
     )
 else:
