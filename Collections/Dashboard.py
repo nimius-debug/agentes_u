@@ -47,3 +47,5 @@ def show_run_details(run):
         st.dataframe(data_df)
     else:
         st.write("No data available for this run.")
+
+dashboard()

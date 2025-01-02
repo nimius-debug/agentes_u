@@ -1,18 +1,46 @@
-from login import check_password
+# main_app.py (or wherever you define your pages/navigation)
 import streamlit as st
-# from st_discord_nav import st_discord_nav
-from page_components.GmapExtractor import g_map_extractor
-from page_components.Dashboard import dashboard
-from page_components.Logout import logout
+from Account.login import check_password
 
-st.set_page_config(page_title="Leads", page_icon="🔍", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Leads", page_icon="🔍", layout="wide")
 
-def main():
-   
-    g_map_extractor()      
+# Make sure your session state has a default
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
 
-if __name__ == "__main__":
-    #Check password before running the app
+def login():
+    # Only proceed if user successfully logs in
     if not check_password():
         st.stop()
-    main()
+
+def logout():
+    st.session_state.logged_in = False
+    # If you want to clear user_id too
+    st.session_state.pop("user_id", None)
+    st.rerun()
+
+# Construct pages
+login_page = st.Page(login, title="Log in", icon=":material/login:")
+logout_page = st.Page(logout, title="Log out", icon=":material/logout:")
+
+dashboard = st.Page(
+    "Collections/dashboard.py", title="Dashboard", icon=":material/dashboard:", default=True
+)
+
+search = st.Page("Tools/gmapExtractor.py", title="G Map", icon=":material/search:")
+search = st.Page("Tools/sendEmails.py", title="Send Email", icon=":material/email:")
+
+# Show navigation
+if st.session_state.logged_in:
+    pg = st.navigation(
+        {
+            "Account": [logout_page],
+            "Dashboard": [dashboard],
+            "Tools": [search],
+        }
+    )
+else:
+    pg = st.navigation([login_page])
+
+st.write(st.session_state)  # for debugging
+pg.run()

@@ -124,3 +124,5 @@ def show_save_dialog(queries_list, business_data):
                 save_run_to_collection(st.session_state['user_id'], selected_collection, ", ".join(queries_list), business_data)
             else:
                 st.error("Please select an existing collection.")
+
+g_map_extractor()
