@@ -6,3 +6,4 @@ secrets.toml
 __pycache__
 agentes
 pages
+send_email.py

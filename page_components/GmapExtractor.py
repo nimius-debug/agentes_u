@@ -4,7 +4,7 @@ from utils.constants import REGIONS, LANGUAGES
 from apis.fetchGMapData import fetch_business_data
 from apis.dataToTable import data_frame_table
 from apis.emailScrawler import process_businesses_email
-from db.db_utils import save_run_to_collection, fetch_user_data, fetch_existing_runs
+from db.mangodb_utils import save_run_to_collection, fetch_user_data, fetch_existing_runs
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -36,14 +36,14 @@ def dialog(payload):
 def g_map_extractor():
     colm = st.columns([4, 1], gap="large")
     with colm[0]:
-        st.header("_:violet[Leads] Extractor_", divider="gray", anchor=False)
+        st.header("_:blue[B2B] Leads Extractor_", divider="gray", anchor=False)
     with colm[1]:
         st.image("https://ik.imagekit.io/indesign/gmap/unnamed.png?updatedAt=1724268033278", width=100)
       
     with st.form(key='search_form'):
         # Queries input
         st.markdown("##### Search Parameters")
-        queries = st.text_area("Queries (separate each query with a comma)", help="Enter the search queries, separated by commas.")
+        queries = st.text_area("Queries (separate each query with a comma)", help="Enter the search queries, separated by commas.", placeholder="e.g., Restaurants in newyork , Hotels in Madrid, etc.")
         queries_list = [q.strip() for q in queries.split(',')] if queries else []
         
         # Region select box

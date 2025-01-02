@@ -65,10 +65,8 @@ def process_businesses_email(businesses):
         else:
             print(f"No website found for {business['name']}.")
             business["emails"] = []
-        
-        # Update progress bar
-        progress = (index + 1) / total_businesses
-        progress_bar.progress(progress)
+            
+            
 
     return businesses
 
@@ -83,6 +81,7 @@ def process_businesses_email(businesses):
 # print(filtered_links)
 
 # z = get_emails("https://avantiway.com/")
+# z = get_emails("https://rejuvenatetampabayspa.glossgenius.com/")
 # print(z)
 # all = get_all_website_links("https://360realtytampa.com/team")
 # x = filter_likely_email_pages(all)

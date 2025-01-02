@@ -1,5 +1,5 @@
 import streamlit as st
-from db.db_utils import fetch_user_data
+from db.mangodb_utils import fetch_user_data
 import pandas as pd
 from collections import defaultdict
 

@@ -1,12 +1,15 @@
 import requests
 import os
 from dotenv import load_dotenv
+from db.tursodb_utils import clean_data
+import json
 from typing import List, Dict, Any
 import streamlit as st
+from rich import print as rprint
 # Load environment variables from .env file
 load_dotenv()
 
-@st.cache_data(show_spinner=False)
+# @st.cache_data(show_spinner=False)
 def fetch_business_data(payload: Dict) -> Dict[str, Any]:
     """
     Fetch business data from Google Maps or a similar service based on provided search queries.
@@ -33,22 +36,9 @@ def fetch_business_data(payload: Dict) -> Dict[str, Any]:
     response = requests.post(url, json=payload, headers=headers)
     # Check if the request was successful
     if response.status_code == 200:
-        return clean_data(response.json())
+        return response.json()
     else:
         response.raise_for_status()
 
-@st.cache_data(show_spinner=False) 
-def clean_data(response):
-    cleaned_data = []
-    if response["status"] == "OK" and "data" in response:
-        for business in response["data"]:
-            cleaned_data.append({
-                "name": business.get("name"),
-                "phone_number": business.get("phone_number"),
-                "address": business.get("full_address") or business.get("address"),
-                "rating": business.get("rating"),
-                "review_count": business.get("review_count"),
-                "website": business.get("website"),
-                "working_hours": business.get("working_hours") or "Not available"
-            })
-    return cleaned_data
+
+
