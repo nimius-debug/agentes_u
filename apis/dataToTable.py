@@ -55,6 +55,8 @@ def data_frame_table(business_data: Dict[str, Any]) -> pd.DataFrame:
     
     return combined_df
 
+
+
 # # Your data
 # data = {
 #     "name": "Metro City Realty",

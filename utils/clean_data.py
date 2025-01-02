@@ -55,8 +55,8 @@ def clean_data(response: Dict[str, Any]) -> List[Dict[str, Any]]:
             "state": business.get("state"),
             "country": business.get("country"),
             # Serialize nested fields to JSON
-            "working_hours": json.dumps(business.get("working_hours")) if business.get("working_hours") else None,
-            "about": json.dumps(business.get("about")) if business.get("about") else None
+            "working_hours": business.get("working_hours") if business.get("working_hours") else None,
+            "about": business.get("about") if business.get("about") else None
             # Store the composite text for later usage
     
         }

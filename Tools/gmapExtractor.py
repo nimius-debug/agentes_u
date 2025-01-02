@@ -6,6 +6,7 @@ from apis.dataToTable import data_frame_table
 from apis.emailScrawler import process_businesses_email
 from db.mangodb_utils import save_run_to_collection, fetch_user_data, fetch_existing_runs
 from dotenv import load_dotenv
+from utils.clean_data import clean_data
 load_dotenv()
 
 @st.dialog("Extracting Google Business", width="small")
@@ -13,13 +14,14 @@ def dialog(payload):
     # Display the input data
     with st.spinner("Searching..."):
         response = fetch_business_data(payload)
-        length = len(response)
+        bus_clean_data = clean_data(response)
+        length = len(bus_clean_data)
         if length == 0:
             st.info("No businesses found. Please try again with different search queries.")
         else:
             st.success(f"Found {length} businesses")
             # Update session state
-            st.session_state['business_data'] = response
+            st.session_state['business_data'] = bus_clean_data
 
     st.header("Do you want to extract emails from the businesses?")
     st.info("Email extraction can take a couple of minutes as it is crawling the web for data. If enabled, please be patient.")
