@@ -50,18 +50,26 @@ def main():
         uploaded_file = st.file_uploader("Upload Excel (.xlsx)", type=["xlsx"])
         
         df = None
+        email_col = None
         if uploaded_file is not None:
             try:
                 df = pd.read_excel(uploaded_file)
-                required_cols = ["Name", "Company", "Email"]
-                if not all(col in df.columns for col in required_cols):
-                    st.error(f"Excel must have columns {required_cols}.")
+
+                # Check for an "Email" column in a case-insensitive manner
+                for col in df.columns:
+                    if col.lower() == "email":
+                        email_col = col
+                        break
+
+                if email_col is None:
+                    st.error("Excel must have an 'Email' column (any capitalization).")
                     df = None
                 else:
                     st.success("Excel file loaded successfully!")
                     st.dataframe(df)
             except Exception as e:
                 st.error(f"Error reading Excel file: {e}")
+
     with col2:
         st.subheader("Email Configuration & Sending")
 
@@ -69,11 +77,12 @@ def main():
         possible_senders = list(SENDER_CREDENTIALS.keys())
         sender_email = st.selectbox("Sender Email", possible_senders)
 
-        # 2. Subject & Body (use placeholders {NAME} and {COMPANY})
-        subject = st.text_input("Subject", value="Hello from Streamlit!")
+        # 2. Subject & Body (with placeholders)
+        # You can use placeholders like {Name}, {Company}, or any other column name in your Excel
+        subject_template = st.text_input("Subject Template", value="Hello {Name} from {Company}")
         body_template = st.text_area(
-            "Email Body (Use {NAME} or {COMPANY} placeholders)",
-            value="Hello {NAME},\n\nWe have an amazing offer for {COMPANY}..."
+            "Email Body Template (Use {ColumnName} as placeholders)",
+            value="Hello {Name},\n\nWe have an amazing offer for {Company}..."
         )
 
         # 3. Keep track of how many emails we’ve sent this session
@@ -82,8 +91,8 @@ def main():
 
         st.write(f"**Emails sent this session**: {st.session_state['email_send_count']} / 50")
 
-        # 4. Send emails (only if df is loaded)
-        if df is not None:
+        # 4. Send emails (only if df is loaded and the email column is found)
+        if df is not None and email_col:
             total_rows = len(df)
             can_send = st.session_state["email_send_count"] < 50
 
@@ -100,19 +109,30 @@ def main():
                         st.warning("Limit of 50 emails reached.")
                         break
 
-                    name = str(row["Name"])
-                    company = str(row["Company"])
-                    recipient_email = str(row["Email"])
+                    # 1. Build the personalized subject
+                    personalized_subject = subject_template
+                    for col in df.columns:
+                        placeholder = "{" + col + "}"
+                        if placeholder in personalized_subject:
+                            personalized_subject = personalized_subject.replace(placeholder, str(row[col]))
 
-                    # Personalize body
-                    personalized_body = body_template.replace("{NAME}", name).replace("{COMPANY}", company)
+                    # 2. Build the personalized body
+                    personalized_body = body_template
+                    for col in df.columns:
+                        placeholder = "{" + col + "}"
+                        if placeholder in personalized_body:
+                            personalized_body = personalized_body.replace(placeholder, str(row[col]))
 
-                    # Send email
+                    # 3. Get the recipient email using the discovered email column
+                    #    (No lowercase conversion, so any capitalization in the Excel remains as is)
+                    recipient_email = str(row[email_col])
+
+                    # 4. Send the email
                     success = send_email(
                         sender_email=sender_email,
                         password=password,
                         recipient_email=recipient_email,
-                        subject=subject,
+                        subject=personalized_subject,
                         message=personalized_body
                     )
 
@@ -125,6 +145,6 @@ def main():
                     progress_bar.progress(progress_fraction)
 
                 st.success(f"Finished sending {count_sent} emails.")
-                # Optionally reset progress or leave it at 100%
+
 
 main()
